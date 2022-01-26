@@ -86,5 +86,16 @@ fn main() {
     // 使用方法
     let x = 12.2_f32.round();
 
-    println!("{}", x)
+    println!("{}", x);
+
+    // 字符类型
+
+    // Rust 的字符不仅仅是 ASCII，包括所有的 Unicode 值
+    let c = 'c';
+    let z = 'ℤ';
+    let g = '国';
+    let heart_eyed_cat = '😻';
+
+    // Unicode 都是 4 个字节编码
+    println!("字符'国'占用了{}字节的内存大小",std::mem::size_of_val(&g));
 }
