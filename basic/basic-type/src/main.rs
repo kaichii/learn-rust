@@ -106,4 +106,61 @@ fn main() {
 
     // 单元类型 `()` 其唯一值就是 `()`
     // `fn main()` 的返回值就是 `()`，不能看作没有返回值，没有 返回值的函数是 发散函数(Rust 中单独定义)
+
+    // 语句和表达式
+
+    // 语句和表达式有所区别，语句执行操作没有返回值，而表达式有返回值
+    // 例如 js 中
+    // 可以看作是语句
+    // let a = 1; => undefined
+    // 可以看作表达式
+    // a = 2; => 2
+
+    // 语句
+    let a = 8;
+    let b: Vec<f64> = Vec::new();
+    let (a, c) = ("hi", false);
+
+    // 表达式
+    5 + 6;
+    let y = {
+        let x = 3;
+        // 表达式充当返回值，不能以分号结尾
+        5 + 6 + x
+    };
+
+    println!("y: {}", y);
+
+    // 函数
+    // 函数命名为蛇形 add_two
+    // 函数参数需标明类型
+    // 函数位置无所谓
+    fn add(i: i32, j: i32) -> i32 {
+        // 表达式返回
+        i + j
+        // return
+        // return i + j;
+    }
+
+    println!("1 + 2 = {}", add(1, 2));
+
+    use std::fmt::Debug;
+
+    // 无返回
+    fn report<T: Debug>(item: T) {
+        println!("{:?}", item); // 隐式返回 `()`
+    }
+
+    fn add(x: u32, y: u32) -> u32 {
+        // 语句而不是表达式 同样返回 `()`
+        x + y; //ERROR: expected `u32`, found `()`
+    }
+
+    // 永不返回
+
+    fn dead_end() -> ! {
+        panic!("永远不会返回")
+    }
+
+    dead_end();
 }
